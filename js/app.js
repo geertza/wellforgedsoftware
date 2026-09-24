@@ -12,7 +12,7 @@
             new Route('Cards', 'card.html'),
             new Route('Projects', 'projects.html'),
             new Route('groceryList', 'groceryList.html'),
-            new Route('Survey', 'survey.html')
+            new Route('Survey', 'survey.php')
         ]);
     }
 
