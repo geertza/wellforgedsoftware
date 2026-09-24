@@ -11,17 +11,17 @@
     <link rel="stylesheet" href="./css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   </head>
-
+git 
 <body>
   <div class="navbar nav bg-dark">
     <ul class="nav">
       <li class="nav-item"><a class="nav-link" href="#home">Home</a></li>
-      <!-- <li class="nav-item"><a class="nav-link" href="#Survey">Survey</a></li>
-      <li class="nav-item"><a class="nav-link" href="#dnd">dnd</a></li>
+      <li class="nav-item"><a class="nav-link" href="#Survey">Survey</a></li>
+      <!-- <li class="nav-item"><a class="nav-link" href="#dnd">dnd</a></li>
       <li class="nav-item"><a class="nav-link" href="#Cards">Cards</a></li>
       <li class="nav-item"><a class="nav-link" href="#Projects">Projects</a></li>
       <li class="nav-item"><a class="nav-link" href="#groceryList">Grocery List</a></li>
-      <li class="nav-item"><a class="nav-link" href="./anime/index.html">AnimaniacClub</a></li> -->
+      <li class="nav-item"><a class="nav-link" href="./anime/index.html">AnimaniacClub</a></li> --> 
     </ul>
   </div>
   <div id="app" class="container">
