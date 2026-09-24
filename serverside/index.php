@@ -11,7 +11,6 @@
     <link rel="stylesheet" href="./css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   </head>
-git 
 <body>
   <div class="navbar nav bg-dark">
     <ul class="nav">
