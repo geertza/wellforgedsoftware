@@ -16,7 +16,7 @@
   <div class="navbar nav bg-dark">
     <ul class="nav">
       <li class="nav-item"><a class="nav-link" href="#home">Home</a></li>
-      <li class="nav-item"><a class="nav-link" href="#dice">Dice Games</a></li>
+      <li class="nav-item"><a class="nav-link" href="#Survey">Survey</a></li>
       <li class="nav-item"><a class="nav-link" href="#dnd">dnd</a></li>
       <li class="nav-item"><a class="nav-link" href="#Cards">Cards</a></li>
       <li class="nav-item"><a class="nav-link" href="#Projects">Projects</a></li>
