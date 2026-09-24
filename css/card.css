@@ -1,0 +1,71 @@
+.cards-body{
+    background-color: rgb(44, 138, 44);
+}
+.playing-card	{
+    width: 100px;
+     height: 150px;
+    margin: 10px 10px;
+    font-family: Splash;
+    border: #ccc 4px solid;  
+  }	
+.playing-body{
+    background-color: red;
+    color: yellow;
+}
+.card-suit-main	{position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%)};
+    .playing-card {
+  width: 150px; /* Standard card width */
+  height: 220px; /* Standard card height */
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  background-color: #fff;
+  position: relative;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  
+}
+
+.card-body {
+  padding: 10px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.top-left, .bottom-right {
+  font-size: 24px;
+  line-height: 1;
+}
+
+.bottom-right {
+  align-self: flex-end;
+  transform: rotate(180deg); /* Flips the bottom rank and suit */
+}
+
+.center-icon {
+  text-align: center;
+  flex-grow: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.large-suit {
+  font-size: 70px;
+}
+
+.suit.large-suit.red {
+  color: red;
+}
+
+/* Add color for suits (e.g., hearts and diamonds would be red) */
+.suit {
+  color: yellow; /* Default for spades and clubs */
+}
+.rank-image {
+  max-height: 80%;
+  position: absolute;
+  bottom: 15%;
+  margin-left: auto;
+  margin-right: auto;
+}

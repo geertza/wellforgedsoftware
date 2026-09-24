@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Local README Generator</title>
+    <style>
+        body { font-family: sans-serif; max-width: 800px; margin: 20px auto; padding: 20px; background: #f4f4f9; }
+        .form-group { margin-bottom: 15px; display: flex; flex-direction: column; }
+        label { font-weight: bold; margin-bottom: 5px; }
+        input, textarea { padding: 10px; border: 1px solid #ddd; border-radius: 4px; font-size: 14px; }
+        textarea { height: 80px; }
+        button { padding: 12px; background: #007bff; color: white; border: none; border-radius: 4px; cursor: pointer; font-size: 16px; margin-top: 10px; }
+        button:hover { background: #0056b3; }
+    </style>
+</head>
+<body>
+
+    <h1>README Generator</h1>
+    <form id="readmeForm"></form>
+    <button type="button" onclick="init()">Generate & Download README.md</button>
+
+    <script>
+        const questions = [];
+        function Question(message, name, type, defaultVal) {
+            this.message = message;
+            this.name = name;
+            this.type = type;
+            this.default = defaultVal || "";
+            questions.push(this);
+        }
+
+        // --- Your Questions (Modified to include Email and Profile Link manually) ---
+        new Question('Developer Name', 'developerName', 'input');
+        new Question('GitHub Username', 'userName', 'input');
+        new Question('Contact Email', 'email', 'input');
+        new Question('Profile Picture URL', 'avatarUrl', 'input');
+        new Question('Other Contributors', 'contributions', 'input');
+        new Question('Image Location', 'image', 'input');
+        new Question('Project Name', 'projectName', 'input');
+        new Question('Purpose/Description', 'purpose', 'editor');
+        new Question('Installation Instructions', 'installation', 'editor', `* first line\n* second`);
+        new Question('App Instructions', 'instructions', 'editor');
+        new Question('License Type (e.g. MIT GPL)', 'licenseType', 'input');
+        new Question('Where to Test', 'tests', 'editor');
+        new Question('Credits', 'credit', 'editor');
+        new Question('Future Changes', 'future', 'editor', "none");
+        new Question('Modules/APIs (space separated)', 'mods', 'input');
+
+        // Render Form
+        const form = document.getElementById('readmeForm');
+        questions.forEach(q => {
+            const div = document.createElement('div');
+            div.className = 'form-group';
+            div.innerHTML = `<label>${q.message}</label>`;
+            const input = q.type === 'editor' ? document.createElement('textarea') : document.createElement('input');
+            input.name = q.name;
+            input.value = q.default;
+            div.appendChild(input);
+            form.appendChild(div);
+        });
+
+        function init() {
+            const formData = new FormData(form);
+            const answers = Object.fromEntries(formData.entries());
+            
+            const opt = processOptionalData(answers);
+            const layout = createMD(answers, opt);
+            
+            downloadFile(layout, 'README.md');
+        }
+
+        function processOptionalData(answers) {
+            let lincenseBadge = "";
+            let modBadge = "";
+            
+            if (answers.licenseType) {
+                answers.licenseType.split(" ").forEach(lic => {
+                    if(lic) lincenseBadge += `![License](https://img.shields.io{lic}-blue.svg) `;
+                });
+            }
+
+            if (answers.mods) {
+                answers.mods.split(" ").forEach(mod => {
+                    if(mod) modBadge += `==${mod}== `;
+                });
+            }
+
+            return {
+                lincenseBadge,
+                modBadge,
+                testsOption: answers.tests ? `## Testing\n${answers.tests}` : "",
+                testsOptional: answers.tests ? `\n* [Testing](#testing)` : "",
+                creditOption: answers.credit ? `## Credit\n${answers.credit}` : "",
+                creditOptional: answers.credit ? `\n* [Credit](#credit)` : "",
+                contributionsOption: answers.contributions ? `Contributions - ${answers.contributions}` : ""
+            };
+        }
+
+        function createMD(answers, opt) {
+            return `# ${answers.projectName}
+BY ${answers.developerName}      ${opt.lincenseBadge} ${opt.modBadge}
+   
+${opt.contributionsOption}
+<img src="${answers.image}" width="200"></img>
+  
+## Table of Contents
+* [Purpose And Description](#purpose-and-description-of-application)
+* [Installation](#installation-or-deployed-website)
+* [Instructions](#instructions-for-use) ${opt.testsOptional}${opt.creditOptional}
+* [Future Plans](#future-development)
+* [Contact](#contact-info)
+  
+## Purpose And Description Of Application
+${answers.purpose}
+  
+## Installation Or Deployed Website
+${answers.installation}
+  
+## Instructions For Use
+${answers.instructions}
+  
+${opt.creditOption}
+  
+${opt.testsOption}
+  
+## Future Development
+${answers.future}
+
+## Contact Info
+Github id: ${answers.userName}
+Email: ${answers.email}
+If you have any questions, feel free to contact me via GitHub.
+![profile image](${answers.avatarUrl})`;
+        }
+
+        function downloadFile(content, fileName) {
+            const blob = new Blob([content], { type: 'text/markdown' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = fileName;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+        }
+    </script>
+</body>
+</html>

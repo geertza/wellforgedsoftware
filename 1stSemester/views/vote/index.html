@@ -1,0 +1,169 @@
+<section class="voteBG">
+  <div class="container mt-5 mb-5 d-flex justify-content-center">
+    <div class="card blurred-box px-1 py-4">
+      <div class="card-body">
+        <h6 class="card-title mb-3 text-center title">
+          Billings Restaurant Survey
+        </h6>
+        <form action="http//johnp.csci.fun/vote.php" method="post" id="myForm">
+          <!-- Text input for "Your name:" -->
+          <div class="row mt-4">
+            <div class="col-sm-12">
+              <div class="form-group">
+                <label for="name" class="form-label">Your name:</label>
+                <input
+                  class="form-control"
+                  type="text"
+                  id="name"
+                  name="name"
+                  placeholder="Enter your name"
+                />
+              </div>
+            </div>
+          </div>
+
+          <!-- Text input for "Age:" -->
+          <div class="row">
+            <div class="col-sm-12">
+              <div class="form-group">
+                <label for="age" class="form-label">Age:</label>
+                <input
+                  class="form-control"
+                  type="text"
+                  id="age"
+                  name="age"
+                  placeholder="Enter your age"
+                />
+              </div>
+            </div>
+          </div>
+
+          <!-- gender input -->
+          <div class="row">
+            <label>Whats your Gender?</label>
+          </div>
+          <div class="row">
+            <div class="col">
+              <label>
+                <input type="radio" name="gender" value="m" />
+                <span>Male</span>
+              </label>
+            </div>
+            <div class="col">
+              <label>
+                <input type="radio" name="gender" value="f" />
+                <span>Female</span>
+              </label>
+            </div>
+            <div class="col">
+              <label>
+                <input type="radio" name="gender" value="o" />
+                <span>Other</span>
+              </label>
+            </div>
+          </div>
+
+          <!-- Select input for "How long have you lived in Billings:" -->
+          <div class="row">
+            <label>How long have you lived in the billings area?</label>
+          </div>
+          <div class="row">
+            <select
+              class="form-select"
+              aria-label="Default select example"
+              name="time_as_resident"
+            >
+              <option selected>Options</option>
+              <option value="short">0 to 5 years</option>
+              <option value="medium">5 to 10 years</option>
+              <option value="long">more then 10 yearse</option>
+            </select>
+          </div>
+
+          <!-- Text input for "Favorite Restaurant:" -->
+          <div class="row"></div>
+          <div class="row">
+            <div class="col-sm-12">
+              <label for="favorite" class="form-label">
+                Favorite Restaurant:
+              </label>
+              <div class="form-group">
+                <input
+                  class="form-control"
+                  type="text"
+                  id="favorite"
+                  name="favorite"
+                  placeholder="Enter your favorite restaurant"
+                />
+              </div>
+            </div>
+          </div>
+
+          <!-- Text input for "Second Favorite Restaurant:" -->
+          <div class="row">
+            <div class="col-sm-12">
+              <div class="form-group">
+                <label for="second_favorite" class="form-label"
+                  >Second Favorite Restaurant:</label
+                >
+                <input
+                  class="form-control"
+                  type="text"
+                  id="second_favorite"
+                  name="second_favorite"
+                  placeholder="Enter your second favorite restaurant"
+                />
+              </div>
+            </div>
+          </div>
+
+          <!-- Text input for "Third Favorite Restaurant:" -->
+          <div class="row">
+            <div class="col-sm-12">
+              <div class="form-group">
+                <label for="third_favorite" class="form-label"
+                  >Third Favorite Restaurant:</label
+                >
+                <input
+                  class="form-control"
+                  type="text"
+                  id="third_favorite"
+                  name="third_favorite"
+                  placeholder="Enter your third favorite restaurant"
+                />
+              </div>
+            </div>
+          </div>
+
+          <!-- Text field for "What do you like most..." -->
+          <div class="row">
+            <div class="col-sm-12">
+              <div class="form-group">
+                <label for="like_most" class="form-label" id="responseMessage"
+                  >What do you like most about your favorite restaurant?</label
+                >
+                <textarea
+                  class="form-control"
+                  id="like_most"
+                  name="like_most"
+                  rows="3"
+                ></textarea>
+              </div>
+            </div>
+          </div>
+
+          <!-- Submit Button -->
+          <div class="text center row mt-3">
+            <button type="submit">Submit</button>
+          </div>
+        </form>
+        <iframe
+          width="420"
+          height="315"
+          src="https://www.youtube.com/embed/eBtNo93YsLM"
+        >
+        </iframe>
+      </div>
+    </div>
+  </div>
+</section>

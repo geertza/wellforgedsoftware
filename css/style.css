@@ -1,0 +1,95 @@
+@font-face {
+  font-family: 'Splash';
+  src: url('./fonts/Splash-Regular.ttf') format('truetype');
+}
+
+/* color scheme for the whole page */
+:root {
+  --accent-neutral: #595f39;
+  --dark-text: #1B1B1B;
+  --background:  #8d8d89;
+  --secondary-background: #d9d9d6;
+  --pop-bg:#0F2143;
+  --pop-primary:#0fbaf9;
+  --pop-secondary:#b43909; 
+  --pop-text:gold;
+}
+/* ------------------body---------------------- */
+body{
+  background-color: var(--background);
+}
+/* ------_________navbar_____------- */
+
+
+/* ------------home---------------- */
+.filler{
+  max-height: 70vh;
+  margin: auto;
+}
+
+/* -----------------todo------------------ */
+.card-body{
+  background-color: var(--pop-bg);
+  color: var(--pop-text);
+}
+.Grocery{
+  background-color: var(--secondary-background);
+}
+.addButton{
+  background-color: var(--pop-primary);
+  color: var(--pop-text);
+  text-shadow: black 2px 2px 4px;
+  font-size: 1.2em;
+}
+.addButton:hover {
+    background-color: #0a1c6c;
+    color: white;
+}
+/* =========dice================= */
+
+.die {
+    width: 80px; height: 80px; background: white; color: #2c3e50;
+    border-radius: 8px; display: flex; flex-direction: column;
+    align-items: center; justify-content: center; font-weight: bold;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.3); transition: transform 0.1s;
+}
+
+.die-label { font-size: 0.7rem; color: #7f8c8d; }
+.die-value { font-size: 1.8rem; }
+.finished { transform: scale(1.1); background: #f1c40f; }
+
+button { padding: 10px 15px; margin: 5px; cursor: pointer; background: #3498db; color: white; border: none; border-radius: 4px; font-weight: bold; }
+button:hover { background: #2980b9; }
+.clear-btn { background: #e74c3c; }
+.roll-btn { background: #27ae60; font-size: 1.2rem; padding: 15px 30px; margin-top: 20px; }
+
+
+/* ----------------------------todo------------------ */ 
+.done-text { text-decoration: line-through; opacity: 0.6; }
+.urgent-item { border: 2px solid #dc3545 !important; }
+.list-group-item { transition: all 0.2s ease; }
+.list-group> :first-child button.move-up { display: none; }
+.list-group> :last-child button.move-down { display: none;}
+.fader {
+  -moz-transition: opacity 0.7s linear;
+  -o-transition: opacity 0.7s linear;
+  -webkit-transition: opacity 0.7s linear;
+  transition: opacity 0.9s linear;
+}
+
+.fader.fadedOut {
+  opacity: 0;
+}
+.fadeIn {
+  opacity: 1;
+}
+@keyframes fadeIn {
+  0% { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.fadeIn-animation {
+  animation-name: fadeIn;
+  animation-duration: 3s; /* Adjust duration as needed */
+  animation-fill-mode: both; /* Ensures the element stays visible after the animation */
+}
