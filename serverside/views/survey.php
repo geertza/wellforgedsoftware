@@ -104,5 +104,29 @@
         </div>
     </div>
 </div>
+<script>
+<script>
+const modal = document.getElementById("colorModal");
+const openButton = document.getElementById("openColorModal");
+const closeButton = document.querySelector(".close");
+
+// Open modal
+openButton.addEventListener("click", function () {
+    modal.style.display = "block";
+});
+
+// Close modal
+closeButton.addEventListener("click", function () {
+    modal.style.display = "none";
+});
+
+// Close when clicking outside the modal
+window.addEventListener("click", function (event) {
+    if (event.target === modal) {
+        modal.style.display = "none";
+    }
+});
+</script>
+</script>
 </section>
 
