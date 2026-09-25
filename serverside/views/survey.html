@@ -29,7 +29,7 @@
                         </div>
 
                         <!-- 3. Rate My Site (Radio Buttons) -->
-                        <div class="mb-4">
+                        <!-- <div class="mb-4">
                             <label class="form-label d-block fw-bold">Rate My Site</label>
                             <div class="form-check form-check-inline">
                                 <input class="form-check-input" type="radio" name="siteRating" id="rateExcellent" value="excellent" required>
@@ -47,7 +47,9 @@
                                 <input class="form-check-input" type="radio" name="siteRating" id="ratePoor" value="poor">
                                 <label class="form-check-label" for="ratePoor">Poor</label>
                             </div>
-                        </div>
+                        </div> -->
+                        <button type="button" id="openModal">Rate this site</button>
+                        <span id="rateStatus">No rating yet</span>
 
                         <!-- 4. Multiple Choice Question (Checkboxes) -->
                         <div class="mb-4">
@@ -70,94 +72,72 @@
                             </div>
                         </div>
                         <!-- pop up menu -->
-                         <label>Choose Color Scheme:</label>
-                            <button type="button" id="openColorModal">Select 3 Colors</button>
-                            <input type="hidden" id="colorSchemeInput" name="colorScheme">
-                         <!-- The Popup Modal -->
-                            <div id="colorModal" class="modal" style="display:none;">
-                            <div class="modal-content">
-                                <span class="close">&times;</span>
-                                <h3>Pick 3 Colors (Triadic Scheme)</h3>
-                                
-                                <!-- Color Wheel Container (SVG or Canvas) -->
-                                <div class="color-wheel-container">
-                                <canvas id="colorWheel" width="250" height="250"></canvas>
-                                </div>
-
-                                <!-- Preview of Selected 3 Colors -->
-                                <div class="palette-preview">
-                                <div class="swatch" id="swatch1"></div>
-                                <div class="swatch" id="swatch2"></div>
-                                <div class="swatch" id="swatch3"></div>
-                                </div>
-                                </div>
-                            </div>
-
+                         
                         <!-- 5. Submit Button -->
                         <div class="d-grid">
                             <button type="submit" class="btn btn-primary btn-lg">Submit Suggestions</button>
                         </div>
 
                     </form>
-                
+                <div class="overlay" id="overlay">
+  <div class="modal" role="dialog" aria-modal="true">
+    <div class="stars">
+      <input type="radio" id="s5" name="stars" value="5"><label for="s5" aria-label="5 stars"></label>
+      <input type="radio" id="s4" name="stars" value="4"><label for="s4" aria-label="4 stars"></label>
+      <input type="radio" id="s3" name="stars" value="3"><label for="s3" aria-label="3 stars"></label>
+      <input type="radio" id="s2" name="stars" value="2"><label for="s2" aria-label="2 stars"></label>
+      <input type="radio" id="s1" name="stars" value="1"><label for="s1" aria-label="1 star"></label>
+    </div>
+    <button type="button" id="cancelModal">Cancel</button>
+    <button type="button" id="confirmModal" disabled>Save rating</button>
+  </div>
+</div>
 
                 </div>
             </div>
         </div>
     </div>
 </div>
-<script>
-const modal = document.getElementById("colorModal");
-const openButton = document.getElementById("openColorModal");
-const closeButton = document.querySelector(".close");
 
-openButton.addEventListener("click", function () {
-    modal.style.display = "block";
-});
-
-closeButton.addEventListener("click", function () {
-    modal.style.display = "none";
-});
-
-window.addEventListener("click", function (event) {
-    if (event.target === modal) {
-        modal.style.display = "none";
-    }
-});
-</script>
-<style>
-    .modal {
-    position: fixed;
-    z-index: 9999;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.6);
-}
-
-.modal-content {
-    background-color: white;
-    margin: 10% auto;
-    padding: 25px;
-    width: 500px;
-    max-width: 90%;
-    border-radius: 10px;
-    position: relative;
-}
-
-.close {
-    position: absolute;
-    right: 20px;
-    top: 10px;
-    font-size: 30px;
-    font-weight: bold;
-    cursor: pointer;
-}
-
-.close:hover {
-    color: red;
-}
 </style>
+<script>
+    const overlay = document.getElementById('overlay');
+const openModalBtn = document.getElementById('openModal');
+const cancelModalBtn = document.getElementById('cancelModal');
+const confirmModalBtn = document.getElementById('confirmModal');
+const rateStatus = document.getElementById('rateStatus');
+const starInputs = document.querySelectorAll('input[name="stars"]');
+
+let savedRating = null;
+let pendingRating = null;
+
+openModalBtn.addEventListener('click', () => {
+  pendingRating = savedRating;
+  confirmModalBtn.disabled = pendingRating === null;
+  overlay.classList.add('open');
+});
+
+cancelModalBtn.addEventListener('click', () => overlay.classList.remove('open'));
+
+starInputs.forEach(input => {
+  input.addEventListener('change', () => {
+    pendingRating = Number(input.value);
+    confirmModalBtn.disabled = false;
+  });
+});
+
+confirmModalBtn.addEventListener('click', () => {
+  savedRating = pendingRating;
+  rateStatus.textContent = `${savedRating} star${savedRating === 1 ? '' : 's'} selected`;
+  overlay.classList.remove('open');
+});
+
+// inside your form's submit listener
+if (savedRating === null) {
+  // block submit, show an error, etc.
+  return;
+}
+const payload = { /* ...your other fields..., */ rating: savedRating };
+</script>  
 </section>
 

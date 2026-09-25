@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Site Feedback</title>
+<style>
+  :root {
+    --ink: #1c1a17;
+    --paper: #f6f3ec;
+    --line: #d8d2c4;
+    --accent: #3d5a4f;
+    --accent-light: #eef2ef;
+    --star-off: #c9c2b0;
+    --star-on: #c98a3e;
+    --radius: 6px;
+    font-size: 16px;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--paper);
+    font-family: 'Iowan Old Style', 'Palatino Linotype', Georgia, serif;
+    color: var(--ink);
+    padding: 24px;
+  }
+
+  .card {
+    width: 100%;
+    max-width: 380px;
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 36px 32px;
+    background: #fffdf9;
+  }
+
+  h1 {
+    font-size: 1.4rem;
+    font-weight: 600;
+    margin: 0 0 6px;
+    letter-spacing: 0.01em;
+  }
+
+  .sub {
+    margin: 0 0 28px;
+    font-size: 0.92rem;
+    color: #6b6459;
+    line-height: 1.5;
+  }
+
+  label {
+    display: block;
+    font-size: 0.85rem;
+    margin-bottom: 6px;
+    color: #4a453d;
+  }
+
+  input[type="text"] {
+    width: 100%;
+    padding: 10px 12px;
+    font-size: 1rem;
+    font-family: inherit;
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    background: var(--paper);
+    color: var(--ink);
+  }
+
+  input[type="text"]:focus {
+    outline: 2px solid var(--accent);
+    outline-offset: 1px;
+  }
+
+  .field { margin-bottom: 20px; }
+
+  .rate-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 28px;
+    padding: 12px 14px;
+    border: 1px dashed var(--line);
+    border-radius: var(--radius);
+    background: var(--accent-light);
+  }
+
+  .rate-status {
+    font-size: 0.85rem;
+    color: #4a453d;
+  }
+
+  .rate-status strong {
+    color: var(--accent);
+    font-weight: 600;
+  }
+
+  button {
+    font-family: inherit;
+    cursor: pointer;
+  }
+
+  .btn-open {
+    border: 1px solid var(--accent);
+    background: transparent;
+    color: var(--accent);
+    padding: 8px 14px;
+    border-radius: var(--radius);
+    font-size: 0.85rem;
+    white-space: nowrap;
+  }
+  .btn-open:hover { background: var(--accent); color: #fff; }
+
+  .btn-submit {
+    width: 100%;
+    padding: 12px;
+    background: var(--accent);
+    color: #fff;
+    border: none;
+    border-radius: var(--radius);
+    font-size: 0.95rem;
+    letter-spacing: 0.01em;
+  }
+  .btn-submit:hover { background: #30473e; }
+  .btn-submit:disabled { background: #b8b3a5; cursor: not-allowed; }
+
+  .error {
+    color: #a4432c;
+    font-size: 0.8rem;
+    margin-top: 6px;
+    min-height: 1em;
+  }
+
+  /* Modal */
+  .overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(28, 26, 23, 0.45);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    z-index: 10;
+  }
+  .overlay.open { display: flex; }
+
+  .modal {
+    background: #fffdf9;
+    border-radius: var(--radius);
+    border: 1px solid var(--line);
+    padding: 32px 28px;
+    max-width: 340px;
+    width: 100%;
+    text-align: center;
+  }
+
+  .modal h2 {
+    font-size: 1.1rem;
+    margin: 0 0 6px;
+    font-weight: 600;
+  }
+
+  .modal p {
+    margin: 0 0 22px;
+    font-size: 0.85rem;
+    color: #6b6459;
+  }
+
+  fieldset {
+    border: none;
+    margin: 0 0 24px;
+    padding: 0;
+  }
+
+  .stars {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: center;
+    gap: 4px;
+  }
+
+  .stars input {
+    position: absolute;
+    opacity: 0;
+    width: 1px;
+    height: 1px;
+  }
+
+  .stars label {
+    font-size: 2rem;
+    line-height: 1;
+    color: var(--star-off);
+    cursor: pointer;
+    padding: 2px;
+    transition: color 0.12s ease, transform 0.12s ease;
+    margin: 0;
+  }
+
+  .stars label:before { content: "★"; }
+
+  .stars input:checked ~ label,
+  .stars label:hover,
+  .stars label:hover ~ label {
+    color: var(--star-on);
+  }
+
+  .stars input:focus-visible + label {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+    border-radius: 3px;
+  }
+
+  .modal-actions {
+    display: flex;
+    gap: 10px;
+  }
+
+  .btn-cancel {
+    flex: 1;
+    padding: 10px;
+    background: transparent;
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    color: var(--ink);
+    font-size: 0.85rem;
+  }
+  .btn-cancel:hover { background: var(--paper); }
+
+  .btn-confirm {
+    flex: 1;
+    padding: 10px;
+    background: var(--accent);
+    color: #fff;
+    border: none;
+    border-radius: var(--radius);
+    font-size: 0.85rem;
+  }
+  .btn-confirm:hover { background: #30473e; }
+  .btn-confirm:disabled { background: #b8b3a5; cursor: not-allowed; }
+
+  .result {
+    display: none;
+    margin-top: 22px;
+    padding: 14px;
+    border-radius: var(--radius);
+    background: var(--accent-light);
+    font-size: 0.85rem;
+    color: #30473e;
+    text-align: center;
+  }
+  .result.show { display: block; }
+</style>
+</head>
+<body>
+
+  <form class="card" id="feedbackForm" novalidate>
+    <h1>Share your feedback</h1>
+    <p class="sub">Tell us who you are and how we're doing.</p>
+
+    <div class="field">
+      <label for="username">Username</label>
+      <input type="text" id="username" name="username" placeholder="e.g. jordan_writes" autocomplete="username">
+      <div class="error" id="usernameError"></div>
+    </div>
+
+    <div class="rate-row">
+      <span class="rate-status" id="rateStatus">No rating yet</span>
+      <button type="button" class="btn-open" id="openModal">Rate this site</button>
+    </div>
+
+    <button type="submit" class="btn-submit">Submit feedback</button>
+
+    <div class="result" id="result"></div>
+  </form>
+
+  <div class="overlay" id="overlay">
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+      <h2 id="modalTitle">Rate this site</h2>
+      <p>Pick the number of stars that fits your experience.</p>
+
+      <fieldset>
+        <div class="stars">
+          <input type="radio" id="s5" name="stars" value="5"><label for="s5" aria-label="5 stars"></label>
+          <input type="radio" id="s4" name="stars" value="4"><label for="s4" aria-label="4 stars"></label>
+          <input type="radio" id="s3" name="stars" value="3"><label for="s3" aria-label="3 stars"></label>
+          <input type="radio" id="s2" name="stars" value="2"><label for="s2" aria-label="2 stars"></label>
+          <input type="radio" id="s1" name="stars" value="1"><label for="s1" aria-label="1 star"></label>
+        </div>
+      </fieldset>
+
+      <div class="modal-actions">
+        <button type="button" class="btn-cancel" id="cancelModal">Cancel</button>
+        <button type="button" class="btn-confirm" id="confirmModal" disabled>Save rating</button>
+      </div>
+    </div>
+  </div>
+
+<script>
+  const form = document.getElementById('feedbackForm');
+  const usernameInput = document.getElementById('username');
+  const usernameError = document.getElementById('usernameError');
+  const rateStatus = document.getElementById('rateStatus');
+  const openModalBtn = document.getElementById('openModal');
+  const overlay = document.getElementById('overlay');
+  const cancelModalBtn = document.getElementById('cancelModal');
+  const confirmModalBtn = document.getElementById('confirmModal');
+  const starInputs = document.querySelectorAll('input[name="stars"]');
+  const result = document.getElementById('result');
+
+  let savedRating = null;   // committed rating, used on submit
+  let pendingRating = null; // rating chosen inside modal before confirm
+
+  function openModal() {
+    // preload modal with previously saved rating, if any
+    starInputs.forEach(input => {
+      input.checked = savedRating !== null && Number(input.value) === savedRating;
+    });
+    pendingRating = savedRating;
+    confirmModalBtn.disabled = pendingRating === null;
+    overlay.classList.add('open');
+    (document.querySelector('input[name="stars"]:checked') || starInputs[starInputs.length - 1]).focus();
+  }
+
+  function closeModal() {
+    overlay.classList.remove('open');
+    openModalBtn.focus();
+  }
+
+  openModalBtn.addEventListener('click', openModal);
+  cancelModalBtn.addEventListener('click', closeModal);
+
+  overlay.addEventListener('click', (e) => {
+    if (e.target === overlay) closeModal();
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && overlay.classList.contains('open')) closeModal();
+  });
+
+  starInputs.forEach(input => {
+    input.addEventListener('change', () => {
+      pendingRating = Number(input.value);
+      confirmModalBtn.disabled = false;
+    });
+  });
+
+  confirmModalBtn.addEventListener('click', () => {
+    savedRating = pendingRating;
+    rateStatus.innerHTML = `<strong>${savedRating} ${savedRating === 1 ? 'star' : 'stars'}</strong> selected`;
+    closeModal();
+  });
+
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    result.classList.remove('show');
+    usernameError.textContent = '';
+
+    const username = usernameInput.value.trim();
+    let hasError = false;
+
+    if (!username) {
+      usernameError.textContent = 'Please enter a username.';
+      hasError = true;
+    }
+    if (savedRating === null) {
+      rateStatus.innerHTML = 'No rating yet <span style="color:#a4432c">— please rate the site</span>';
+      hasError = true;
+    }
+
+    if (hasError) return;
+
+    const payload = { username, rating: savedRating };
+    result.textContent = `Thanks, ${payload.username} — submitted with a ${payload.rating}-star rating.`;
+    result.classList.add('show');
+
+    // This is where the payload would be sent to a server, e.g.:
+    // fetch('/api/feedback', { method: 'POST', body: JSON.stringify(payload) })
+  });
+</script>
+
+</body>
+</html>
