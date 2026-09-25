@@ -99,6 +99,18 @@
     </div>
 </div>
 
+<style>
+.overlay { position: fixed; inset: 0; background: rgba(0,0,0,.45); display: none; align-items: center; justify-content: center; z-index: 1000; }
+.overlay.open { display: flex; }
+.modal { background: #fff; padding: 24px; border-radius: 6px; text-align: center; }
+
+.stars { display: flex; flex-direction: row-reverse; justify-content: center; gap: 4px; margin-bottom: 16px; }
+.stars input { position: absolute; opacity: 0; width: 1px; height: 1px; }
+.stars label { font-size: 2rem; color: #ccc; cursor: pointer; }
+.stars label:before { content: "★"; }
+.stars input:checked ~ label,
+.stars label:hover,
+.stars label:hover ~ label { color: #c98a3e; }
 </style>
 <script>
 const overlay = document.getElementById('overlay');
