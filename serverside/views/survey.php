@@ -101,12 +101,13 @@
 
 </style>
 <script>
-    const overlay = document.getElementById('overlay');
+const overlay = document.getElementById('overlay');
 const openModalBtn = document.getElementById('openModal');
 const cancelModalBtn = document.getElementById('cancelModal');
 const confirmModalBtn = document.getElementById('confirmModal');
 const rateStatus = document.getElementById('rateStatus');
 const starInputs = document.querySelectorAll('input[name="stars"]');
+const form = document.querySelector('form');
 
 let savedRating = null;
 let pendingRating = null;
@@ -132,12 +133,19 @@ confirmModalBtn.addEventListener('click', () => {
   overlay.classList.remove('open');
 });
 
-// inside your form's submit listener
-if (savedRating === null) {
-  // block submit, show an error, etc.
-  return;
-}
-const payload = { /* ...your other fields..., */ rating: savedRating };
-</script>  
+form.addEventListener('submit', (e) => {
+  if (savedRating === null) {
+    e.preventDefault();
+    rateStatus.textContent = 'Please rate the site before submitting';
+    rateStatus.style.color = 'red';
+    return;
+  }
+  // rating is valid — you can stash it in a hidden input here if you want
+  // it included in the POST body, e.g.:
+  // const hidden = document.createElement('input');
+  // hidden.type = 'hidden'; hidden.name = 'siteRating'; hidden.value = savedRating;
+  // form.appendChild(hidden);
+});
+</script>
 </section>
 
