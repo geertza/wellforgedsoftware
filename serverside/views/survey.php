@@ -90,6 +90,8 @@
                                 <div class="swatch" id="swatch2"></div>
                                 <div class="swatch" id="swatch3"></div>
                                 </div>
+                                </div>
+                            </div>
 
                         <!-- 5. Submit Button -->
                         <div class="d-grid">
@@ -104,7 +106,6 @@
         </div>
     </div>
 </div>
-<script>
 <script>
 const modal = document.getElementById("colorModal");
 const openButton = document.getElementById("openColorModal");
