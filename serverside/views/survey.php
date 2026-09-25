@@ -73,7 +73,23 @@
                          <label>Choose Color Scheme:</label>
                             <button type="button" id="openColorModal">Select 3 Colors</button>
                             <input type="hidden" id="colorSchemeInput" name="colorScheme">
+                         <!-- The Popup Modal -->
+                            <div id="colorModal" class="modal" style="display:none;">
+                            <div class="modal-content">
+                                <span class="close">&times;</span>
+                                <h3>Pick 3 Colors (Triadic Scheme)</h3>
+                                
+                                <!-- Color Wheel Container (SVG or Canvas) -->
+                                <div class="color-wheel-container">
+                                <canvas id="colorWheel" width="250" height="250"></canvas>
+                                </div>
 
+                                <!-- Preview of Selected 3 Colors -->
+                                <div class="palette-preview">
+                                <div class="swatch" id="swatch1"></div>
+                                <div class="swatch" id="swatch2"></div>
+                                <div class="swatch" id="swatch3"></div>
+                                </div>
 
                         <!-- 5. Submit Button -->
                         <div class="d-grid">
@@ -81,23 +97,7 @@
                         </div>
 
                     </form>
-                    <!-- The Popup Modal -->
-                <div id="colorModal" class="modal" style="display:none;">
-                <div class="modal-content">
-                    <span class="close">&times;</span>
-                    <h3>Pick 3 Colors (Triadic Scheme)</h3>
-                    
-                    <!-- Color Wheel Container (SVG or Canvas) -->
-                    <div class="color-wheel-container">
-                    <canvas id="colorWheel" width="250" height="250"></canvas>
-                    </div>
-
-                    <!-- Preview of Selected 3 Colors -->
-                    <div class="palette-preview">
-                    <div class="swatch" id="swatch1"></div>
-                    <div class="swatch" id="swatch2"></div>
-                    <div class="swatch" id="swatch3"></div>
-                    </div>
+                
 
                 </div>
             </div>
