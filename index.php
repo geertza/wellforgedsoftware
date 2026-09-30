@@ -5,7 +5,7 @@
 <body>
   <?php include 'inc/nav.php'; ?>
   <div id="app" class="container homePage">
-    <div class="fire-container">
+    <div class="fire-container">1
       <h1 class="fire-text">Welcome to Well Forged Software</h1>
     </div>
   </div>
