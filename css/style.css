@@ -1,0 +1,88 @@
+.homePage {
+  background-image: url("../images/fireLogo.jpg");
+  background-size: cover;
+  background-position: center;
+  height: 100vh;
+  display: flex;
+
+}
+.fire{
+  color: #b60707;
+}
+ .fire-text {
+    font-size: 3rem;
+    font-weight: 900;
+    color: #ffcc00;
+    border-radius: 10px;
+    background-color: rgb(0, 0, 0);
+    border: 1px solid #000;
+    /* Core hot ember color */
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    position: relative;
+    text-align: center;
+    left: 10%;
+    top: 10%;
+
+    /* Multi-layered initial text-shadow representing heat gradients */
+    text-shadow:
+      0 -2px 4px #fff,
+      0 -4px 10px #ffcc00,
+      0 -10px 20px #ff6600,
+      0 -20px 40px #cc0000;
+
+    /* Triggers the flame flicker animation */
+    animation: flicker 3s infinite alternate linear;
+  }
+
+  /* Keyframes simulating fluid thermal movements */
+  @keyframes flicker {
+    0% {
+      text-shadow:
+        0 -2px 4px #fff,
+        2px -4px 12px #ffcc00,
+        -2px -12px 22px #ff6600,
+        2px -22px 42px #cc0000;
+    }
+
+    50% {
+      text-shadow:
+        0 -3px 5px #fff,
+        -3px -5px 14px #ffcc00,
+        3px -15px 25px #ff5500,
+        -4px -20px 38px #cc0000;
+    }
+
+    100% {
+      text-shadow:
+        0 -2px 4px #fff,
+        4px -6px 10px #ffdd00,
+        -3px -10px 20px #ff6600,
+        3px -24px 45px #b30000;
+    }
+
+  }
+
+  /* Accessibility: Stop the movement for users sensitive to motion */
+  @media (prefers-reduced-motion: reduce) {
+    .fire-text {
+      animation: none;
+    }
+  }
+/* --------------survey -------------- */
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+button {
+  outline: 2px black;
+  background: yellow;
+  border: none;
+  min-height: 30px;
+}
+.voteBG {
+    background-image: url(https://news.mit.edu/sites/default/files/images/202410/MIT-Polarization-Models-01-press.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}

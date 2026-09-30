@@ -1,0 +1,657 @@
+@font-face {
+  font-family: immortal; /* set name */
+  src: url(./fonts/IMMORTAL.ttf); /* url of the font */
+}
+@font-face {
+  font-family: monster; /* set name */
+  src: url(./fonts/MeltedMonster-ARPLA.ttf); /* url of the font */
+}
+/* color scheme for the whole page */
+:root {
+  --primary-color: #656561;
+  --secondary-color: #c2b014;
+  --third-color: #f3dbad;
+  --fourth-color: #669bbc;
+  --fifth-color: #003049;
+  --text-color-light: #333333;
+  --text-color-dark: #ffffff;
+  --background-light: #bbe6b4;
+  --background-dark: #2c3e50;
+}
+/* _______------------body ------------------____  */
+body {
+  background-image: url("../images/moon.png");
+  background-repeat: no-repeat;
+  background-size: 40%;
+  position: absolute;
+  background-attachment: fixed;
+  background-position: 50% 20%;
+  background-color: var(--third-color);
+  animation: color-cycle 30s infinite alternate; /* 5s duration, infinite loop, alternates direction */
+}
+
+.emptyspace {
+  height: 10vh;
+}
+.navbar {
+  background-color: var(--fourth-color);
+  min-height: 10vh;
+  font-size: 25px;
+  position: fixed;
+  top: 0%;
+  width: 100%;
+  z-index: 1000;
+}
+.bg-image {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 250%;
+  height: 100%;
+  z-index: -1; /* Ensure the background image is behind other content */
+  opacity: 0.9; /* Adjust opacity for a subtle effect */
+}
+.moving-image {
+  animation-name: moveLeft;
+  animation-duration: 90s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+}
+@keyframes moveLeft {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+.neonBorder {
+  border: 2px solid var(--fourth-color); /* Base border color */
+  border-radius: 15px;
+  box-shadow:
+    0 0 5px #0ff,
+    0 0 10px var(--fourth-color),
+    0 0 20px var(--fourth-color),
+    0 0 40px var(--third-color);
+}
+
+/* animation for color changing backgeround */
+@keyframes color-cycle {
+  0% {
+    background-color: var(--fourth-color);
+  }
+  25% {
+    background-color: var(--fifth-color);
+  }
+  50% {
+    background-color: black;
+  }
+  75% {
+    background-color: var(--fifth-color);
+  }
+  100% {
+    background-color: var(--fourth-color);
+  }
+}
+#pageBody {
+  position: relative;
+  top: 10vh;
+  left: 10%; /* Adjust based on navbar height */
+  z-index: 1; /* Ensure content is above the background image */
+  width: 80vw;
+  min-height: 80vh;
+  height: fit-content;
+  background-color: transparent;
+}
+.namePlate {
+  background-color: var(--third-color);
+  border-radius: 15%;
+}
+/* ____------------home page------------------____  */
+.iconContainer {
+  position: relative;
+  float: left;
+  text-align: center;
+}
+.pngIcon {
+  max-width: 15vw;
+  height: auto;
+  border-radius: 50%;
+  border: 5px solid var(--fifth-color);
+  box-shadow: 0 0 10px var(--fifth-color);
+  margin-top: 20px;
+}
+.pngText {
+  position: absolute;
+  bottom: 10%;
+  left: 30%;
+  font-family: "immortal";
+  font-size: 24px;
+  color: var(--third-color);
+  text-shadow: var(--fifth-color) 2px 2px 4px;
+}
+.full-gallery {
+  margin: 5%;
+}
+/* ------About-------- */
+.dns {
+  font-size: 25px;
+  max-width: 60%;
+  margin: 0 15% 0 15%;
+}
+h1 {
+  font-size: 60px;
+  text-align: center;
+  font-family: monospace;
+  color: var(--secondary-color);
+  text-shadow: var(--third-color) 4px 4px 4px;
+}
+h2 {
+  font-size: 30px;
+  color: var(--secondary-color);
+  text-align: center;
+}
+
+.me {
+  margin-left: 10%;
+  max-width: 40vw;
+}
+#aboutList {
+  font-size: 20px;
+  color: var(--fifth-color);
+  line-height: 1.6;
+  padding: 20px;
+  margin-left: 15px;
+}
+.specialList {
+  list-style-type: square;
+  border-radius: 10px;
+  background-color: var(--fourth-color);
+}
+#aboutMe {
+  display: flex;
+}
+i {
+  text-decoration: underline;
+}
+
+/* ------------funny----------- */
+.gallery-item {
+  max-width: 100%;
+  background-color: var(--third-color);
+}
+.imgBox {
+  border: 5% solid var(--fourth-color); /* A base border color for the neon effect */
+  box-shadow:
+    0 0 20px var(--fourth-color),
+    /* Inner glow */ 0 0 40px var(--fifth-color),
+    /* Outer glow */ 0 0 60px var(--fourth-color); /* Further spread glow */
+  border-radius: 5px; /* Optional: for rounded corners */
+  padding: 1px;
+  margin: 20px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  text-align: center;
+  background-color: var(--fourth-color);
+}
+.joke {
+  color: var(--third-color);
+  text-align: center;
+  text-shadow: var(--fourth-color);
+  padding: 5%;
+  position: absolute;
+  bottom: 8px;
+  right: 10px;
+  background-color: black;
+}
+.plater {
+  position: absolute;
+  top: 10px;
+  color: var(--third-color);
+  background-color: var(--fourth-color);
+}
+a {
+  text-decoration: none;
+}
+/* creates special speech bubble not very good though */
+.bubble {
+  border-radius: 0.25em;
+  transform: rotate(-4deg) rotateY(15deg);
+  background: var(--fourth-color);
+  font:
+    2em/4 Century Gothic,
+    Verdana,
+    sans-serif;
+  text-align: center;
+}
+/* position the second line of the joke under first */
+.jokeBottom {
+  position: absolute;
+  top: 45%;
+  right: 10%;
+  max-height: 10vw;
+  width: fit-content;
+  font-size: 18px;
+  color: var(--secondary-color);
+  background-color: black;
+}
+.jokeTop {
+  position: absolute;
+  top: 20%;
+  left: 10px;
+  max-height: 10vw;
+  width: fit-content;
+  font-size: 18px;
+  color: var(--fourth-color);
+}
+.jokeImage {
+  max-height: 50vh;
+  object-fit: contain;
+  padding-top: 50px;
+}
+/* ------links-------  */
+div.gallery {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+}
+div.gallery-item {
+  margin: 5px;
+  border: 1px solid var(--fifth-color);
+  width: 180px;
+  height: 250px;
+  background-color: var(--third-color);
+}
+
+div.gallery-item:hover {
+  border: 1px solid var(--fifth-color);
+}
+
+div.gallery-item img {
+  width: 100%;
+  height: 180px;
+}
+div.gallery-item div.desc {
+  padding: 15px;
+  text-align: center;
+  color: var(--fifth-color);
+}
+/* ----------lists-----------  */
+/* to make text over image more readable */
+#biker {
+  margin: 20px;
+  border-radius: 10px;
+  background-size: 50%;
+  background-position: center;
+  background-image: url(../images/—Pngtree—downhill\ bike\ vector_20610457.png);
+  background-color: rgba(128, 128, 128, 0.512);
+  background-repeat: no-repeat;
+  position: relative;
+  color: white;
+  font-size: 13px;
+  padding: 10px;
+  text-shadow:
+    -1px -1px 0 #000,
+    1px -1px 0 #000,
+    -1px 1px 0 #000,
+    1px 1px 0 #000;
+}
+.hate {
+  float: left;
+  padding: 15px;
+  background-color: transparent;
+}
+.musicAlbums {
+  float: right;
+  padding: 15px;
+}
+.list-group-item {
+  background-color: var(--background-dark);
+  color: var(--third-color);
+}
+
+/* ------------tables_____-------- */
+
+table,
+th,
+td {
+  border: 5px solid;
+  color: var(--third-color);
+  background-color: #002f4961;
+  border-color: #c2b1148d;
+  text-align: center;
+}
+/* ________------------home page------------------____  */
+.full-gallery {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 50%;
+  top: 50%;
+  max-width: 1170px;
+  transform: translateX(-50%) translateY(-50%);
+}
+.image-gallery {
+  padding: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.image-gallery .gallery-items {
+  margin: 15px;
+  width: 300px;
+  height: 300px;
+  background-color: transparent;
+  border-radius: 50%;
+  transition: background-color 0.25s ease;
+}
+.gallery-items:hover {
+  background-color: transparent;
+  cursor: pointer;
+}
+.image-gallery .gallery-items .item {
+  position: relative;
+  width: 300px;
+  height: 300px;
+  left: 50%;
+  top: 50%;
+  transform: translateX(-50%) translateY(-50%) scale(0.9);
+  overflow: hidden;
+  border-radius: 50%;
+  transition: transform 0.25s ease;
+}
+.gallery-items:hover .item {
+  transform: translateX(-50%) translateY(-50%) scale(1);
+}
+.image-gallery .gallery-items .item img {
+  width: 100%;
+  height: 100%;
+  transition: transform 0.25s ease;
+}
+.item:hover img {
+  transform: scale(1.08);
+}
+.image-gallery .gallery-items .item .item-title {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%);
+}
+.image-gallery .gallery-items .item .transparent-back {
+  position: absolute;
+  background-color: #000000;
+  width: 100%;
+  height: 100%;
+  top: 50%;
+  left: 50%;
+  opacity: 0;
+  transform: translateX(-50%) translateY(-50%);
+}
+.image-gallery .gallery-items .item .transparent-back:hover {
+  opacity: 0;
+  animation: 0.25s fade-back forwards ease;
+}
+@keyframes fade-back {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 0.5;
+  }
+}
+.item-title .title-text > p:nth-child(1) {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 100%;
+  font-size: 1.5em;
+  pointer-events: none;
+  transform: translateX(-50%) translateY(-500%);
+  color: #ffffff;
+  opacity: 0;
+  text-align: center;
+  transition:
+    transform 0.25s ease,
+    opacity 0.25s ease;
+}
+.item-title:hover .title-text > p:nth-child(1) {
+  transform: translateX(-50%) translateY(-60%);
+  opacity: 1;
+}
+.title-text > p:nth-child(2) {
+  position: absolute;
+  width: 100%;
+  left: 50%;
+  top: 50%;
+  font-size: 1em;
+  pointer-events: none;
+  transform: translateX(-50%) translateY(500%);
+  color: #cccccc;
+  opacity: 0;
+  text-align: center;
+  transition:
+    transform 0.25s ease,
+    opacity 0.25s ease;
+}
+.item-title:hover .title-text > p:nth-child(2) {
+  transform: translateX(-50%) translateY(60%);
+  opacity: 1;
+}
+/* ------------vote------------------------ */
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+button {
+  outline: 2px black;
+  background: yellow;
+  border: none;
+  min-height: 30px;
+}
+/* ==========================================================================
+   #BUTTON
+   ========================================================================== */
+.btn {
+  line-height: 40px;
+  display: inline-block;
+  padding: 0 25px;
+  cursor: pointer;
+  color: #fff;
+  font-family: "Roboto", "Arial", "Helvetica Neue", sans-serif;
+  -webkit-transition: all 0.4s ease;
+  -o-transition: all 0.4s ease;
+  -moz-transition: all 0.4s ease;
+  transition: all 0.4s ease;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.card {
+  overflow: hidden;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  background: #e42020;
+}
+.blurred-box {
+  background-color: #6b6060a5;
+}
+/* background-------------- */
+.voteBG {
+  background-image: url("https://news.mit.edu/sites/default/files/images/202410/MIT-Polarization-Models-01-press.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+label {
+  color: white;
+}
+.title {
+  color: white;
+  font-size: xx-large;
+}
+/* _____------midterm------_____ */
+.midterm {
+  font-family: monster;
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: black;
+  color: orange;
+  text-shadow: #000 1px 1px 10px;
+  font-size: 25px;
+}
+.candyChart {
+  background-color: #000000a8;
+  border-color: rgb(250, 137, 17);
+  margin-left: 20%;
+  background-image: url("../images/treats.jpg");
+}
+
+.candyChart th,
+.candyChart td {
+  border-color: black;
+  color: orange;
+}
+.candyThumb {
+  width: 100px;
+  height: auto;
+}
+.candyChart caption {
+  caption-side: top;
+  text-align: center;
+  background-color: black;
+  color: orange;
+}
+.topSellers {
+  background-color: #000000a8;
+  border-color: rgb(250, 137, 17);
+  margin-left: 20%;
+  background-image: url("../images/records.jpg");
+  font-family: monster;
+  -webkit-text-stroke-width: 1px; /* Sets the outline width */
+  -webkit-text-stroke-color: black; /* Sets the outline color */
+}
+.topSellers th,
+.topSellers td {
+  border-color: black;
+  color: orange;
+}
+.topSellers caption {
+  caption-side: top;
+  text-align: center;
+  background-color: black;
+  color: orange;
+}
+.albumThumb {
+  width: 100px;
+  height: auto;
+}
+.listedCandy {
+  border: solid;
+  border-color: rgb(250, 137, 17);
+  margin-left: 20%;
+  margin-right: 20%;
+  background-image: url("../images/trickortreat.webp");
+  background-size: cover;
+  padding: 0% 20%;
+}
+.candyIcon {
+  list-style: none;
+  padding: 0;
+}
+
+.candyIcon li {
+  position: relative;
+  padding-left: 50px; /* add more space for larger icons */
+  margin-bottom: 10px;
+}
+
+.candyIcon li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 40px; /* increase size here */
+  height: 40px; /* and here */
+  background-image: url("../images/—Pngtree—candy\ lollipop_20083305.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-color: #000;
+  border-radius: 50%;
+}
+.bb {
+  background-color: #00000069;
+  color: white;
+  margin-left: 20%;
+  margin-right: 20%;
+  text-align: center;
+}
+/* ______----------------animes--------___________ */
+.col-12.col-md-4 > .p-3 {
+  min-height: 300px; /* adjust if you want shorter/taller cards */
+  display: flex;
+  flex-direction: column;
+}
+
+article {
+  flex-grow: 1;
+  overflow: visible;
+  text-overflow: unset;
+  white-space: normal;
+}
+
+/* Optional: Space between title and text */
+h3 {
+  margin-bottom: 0.75rem;
+}
+
+/* Fix for missing class in column 3 (border + rounded properly spaced) */
+.border.rounded {
+  border-radius: 6px !important;
+}
+.animeTitle {
+  background-color: var(--fifth-color);
+  color: var(--secondary-color);
+}
+.animeText {
+  background-color: var(--fourth-color);
+  color: var(--text-color-dark);
+}
+.artBg {
+  background-color: var(--primary-color);
+}
+
+/* --___________copyright------- */
+.copyright {
+  min-height: 30px;
+  background-color: red;
+  margin-top: 10%;
+  margin-right: -10%;
+  color: white;
+  width: auto;
+  float: right;
+  padding: 4px;
+  border-radius: 15px;
+}
+.goodDay {
+  position: fixed;
+  top: 10%;
+  left: 40%;
+  width: fit-content;
+  min-height: 5%;
+  background-color: var(--primary-color);
+  color: var(--text-color-dark);
+  position: relative;
+  font-size: 30px;
+  border-radius: 5px;
+  margin: 5% 5%;
+  border-color: var(--secondary-color);
+  border-width: 5px;
+  border-style: solid;
+  padding: 2%;
+}

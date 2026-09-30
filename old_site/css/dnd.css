@@ -1,0 +1,21 @@
+.die { 
+    display: inline-flex; justify-content: center; align-items: center;
+    width: 80px; height: 80px; font-size: 3.5rem; border: 3px solid #333; 
+    border-radius: 12px; margin: 5px; background: white; line-height: 1;
+}
+.dropped { 
+    background: #ffcccc; color: #cc0000; border-color: #cc0000; 
+    text-decoration: line-through; opacity: 0.6; 
+}
+.rolling { animation: shake 0.1s infinite; }
+
+@keyframes shake {
+    0% { transform: rotate(3deg); } 
+    50% { transform: rotate(-3deg); } 
+    100% { transform: rotate(3deg); }
+}
+
+.stat-input.filled { 
+    border-color: #198754; 
+    background-color: #e8f5e9 !important; 
+}
