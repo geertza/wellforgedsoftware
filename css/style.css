@@ -1,16 +1,8 @@
-.homePage {
-  background-image: url("../images/fireLogo.jpg");
-  background-size: cover;
-  background-position: center;
-  height: 100vh;
-  display: flex;
-
-}
 .fire{
   color: #b60707;
 }
  .fire-text {
-    font-size: 3rem;
+    font-size: 2.5rem;
     font-weight: 900;
     color: #ffcc00;
     border-radius: 10px;
@@ -21,9 +13,7 @@
     letter-spacing: 4px;
     position: relative;
     text-align: center;
-    left: 10%;
-    top: 10%;
-
+    
     /* Multi-layered initial text-shadow representing heat gradients */
     text-shadow:
       0 -2px 4px #fff,
@@ -80,9 +70,17 @@ button {
   border: none;
   min-height: 30px;
 }
-.voteBG {
+.survey-form {
     background-image: url(https://news.mit.edu/sites/default/files/images/202410/MIT-Polarization-Models-01-press.jpg);
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
+}
+#survey {
+  background-color: rgba(255, 255, 255, 0.8);
+  padding: 20px;
+  border-radius: 10px;
+}
+.star-icon  {
+ text-shadow: 0px 1px 3px rgba(0, 0, 0, 0.8);
 }

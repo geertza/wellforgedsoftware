@@ -1,95 +1,144 @@
 <!doctype html>
 <html lang="en">
-<?php include 'inc/head.php'; ?>
+
+<head>
+  <?php include 'inc/head.php'; ?>
+</head>
 
 <body>
   <?php include 'inc/nav.php'; ?>
-  <div id="app" class="container">
-    <section class="bg-light">
+  <div id="app" class="container survey-form">
+    <section class="mx-auto max-w-xl px-4 py-10">
+      <form
+        id="survey"
+        action="process.php"
+        method="post"
+        class="space-y-7 rounded-xl bg-white p-6 shadow-md sm:p-8">
+        <header>
+          <h1 class="text-2xl font-bold text-slate-900">Tell us about your visit</h1>
+          <p class="mt-1 text-sm text-slate-600">
+            This survey takes about two minutes. Your answers help us improve the website.
+          </p>
+        </header>
 
-      <div class="container my-5">
-        <div class="row justify-content-center">
-          <div class="col-md-8">
-            <div class="card shadow">
-              <div class="card-header bg-primary text-white">
-                <h3 class="card-title mb-0">Website Suggestion Form</h3>
-              </div>
-              <div class="card-body">
-                <form action="process.php" method="POST" id="myForm" class="form">
+        <!-- a. Text input -->
+        <div>
+          <label for="name" class="block text-sm font-semibold">Your name</label>
+          <input
+            type="text"
+            id="name"
+            name="name"
+            required
+            placeholder="Jane Smith"
+            class="mt-2 block w-full rounded-lg border border-slate-300 px-3 py-2 shadow-sm placeholder:text-slate-400 focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-200" />
+        </div>
 
-                  <!-- 1. Username (First and Last) -->
-                  <div class="row mb-4">
-                    <div class="col-md-6">
-                      <label for="firstName" class="form-label fw-bold">First Name</label>
-                      <input type="text" class="form-control" id="firstName" placeholder="John" required>
-                    </div>
-                    <div class="col-md-6">
-                      <label for="lastName" class="form-label fw-bold">Last Name</label>
-                      <input type="text" class="form-control" id="lastName" placeholder="Doe" required>
-                    </div>
-                  </div>
+        <!-- c. Select -->
+        <div>
+          <label for="role" class="block text-sm font-semibold text-slate-700">What is your role?</label>
+          <select id="role" name="role" required class="mt-2 block w-full rounded-lg border border-slate-300 bg-white px-3 py-2 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-200">
+            <option value="" disabled selected>Choose one</option>
+            <option value="student">Student</option>
+            <option value="teacher">Teacher / Instructor</option>
+            <option value="prospective_client">Prospective Client</option>
+            <option value="other">Other</option>
+          </select>
+        </div>
 
-                  <!-- 2. Written Suggestions -->
-                  <div class="mb-4">
-                    <label for="suggestions" class="form-label fw-bold">Your Written Suggestions</label>
-                    <textarea class="form-control" id="suggestions" rows="4" placeholder="Share your feedback or ideas here..." required></textarea>
-                  </div>
+        <div>
+          <span class="block text-sm font-semibold text-slate-700">How would you rate the quality of this site?</span>
+          <div class="mt-2 flex flex-row-reverse justify-end gap-1 star-rating">
 
-                  <!-- 3. Rate My Site (Radio Buttons) -->
-                  <!-- <div class="mb-4">
-                            <label class="form-label d-block fw-bold">Rate My Site</label>
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="siteRating" id="rateExcellent" value="excellent" required>
-                                <label class="form-check-label" for="rateExcellent">Excellent</label>
-                            </div>
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="siteRating" id="rateGood" value="good">
-                                <label class="form-check-label" for="rateGood">Good</label>
-                            </div>
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="siteRating" id="rateFair" value="fair">
-                                <label class="form-check-label" for="rateFair">Fair</label>
-                            </div>
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="siteRating" id="ratePoor" value="poor">
-                                <label class="form-check-label" for="ratePoor">Poor</label>
-                            </div>
-                        </div> -->
-                  <button type="button" id="openModal">Rate this site</button>
-                  <span id="rateStatus">No rating yet</span>
+            <input type="radio" id="star5" name="quality_rating" value="5" required class="peer hidden" />
+            <label for="star5" class="cursor-pointer text-2xl text-slate-300 hover:text-amber-400 peer-hover:text-amber-400 peer-checked:text-amber-500 star-icon">★</label>
 
-                  <!-- 4. Multiple Choice Question (Checkboxes) -->
-                  <div class="mb-4">
-                    <label class="form-label d-block fw-bold">What features would you like to see improved? (Select all that apply)</label>
-                    <div class="form-check">
-                      <input class="form-check-input" type="checkbox" value="speed" id="checkSpeed">
-                      <label class="form-check-label" for="checkSpeed">Website Loading Speed</label>
-                    </div>
-                    <div class="form-check">
-                      <input class="form-check-input" type="checkbox" value="design" id="checkDesign">
-                      <label class="form-check-label" for="checkDesign">Visual Design & Layout</label>
-                    </div>
-                    <div class="form-check">
-                      <input class="form-check-input" type="checkbox" value="navigation" id="checkNavigation">
-                      <label class="form-check-label" for="checkNavigation">Navigation & Search</label>
-                    </div>
-                    <div class="form-check">
-                      <input class="form-check-input" type="checkbox" value="content" id="checkContent">
-                      <label class="form-check-label" for="checkContent">Content Quality</label>
-                    </div>
-                  </div>
-                  <!-- pop up menu -->
+            <input type="radio" id="star4" name="quality_rating" value="4" class="peer hidden" />
+            <label for="star4" class="cursor-pointer star-icon text-2xl text-slate-300 hover:text-amber-400 peer-hover:text-amber-400 peer-checked:text-amber-500">★</label>
 
-                  <!-- 5. Submit Button -->
-                  <div class="d-grid">
-                    <button type="submit" class="btn btn-primary btn-lg">Submit Suggestions</button>
-                  </div>
+            <input type="radio" id="star3" name="quality_rating" value="3" class="peer hidden" />
+            <label for="star3" class="cursor-pointer star-icon text-2xl text-slate-300 hover:text-amber-400 peer-hover:text-amber-400 peer-checked:text-amber-500">★</label>
 
-                </form>
+            <input type="radio" id="star2" name="quality_rating" value="2" class="peer hidden" />
+            <label for="star2" class="cursor-pointer text-2xl star-icon text-slate-300 hover:text-amber-400 peer-hover:text-amber-400 peer-checked:text-amber-500">★</label>
 
-              </div>
+            <input type="radio" id="star1" name="quality_rating" value="1" class="peer hidden" />
+            <label for="star1" class="cursor-pointer text-2xl star-icon text-slate-300 hover:text-amber-400 peer-hover:text-amber-400 peer-checked:text-amber-500">★</label>
 
+          </div>
+        </div>
+
+
+        <!-- d. Radio buttons -->
+        <fieldset>
+          <legend class="text-sm font-semibold">How easy was the site to use?</legend>
+          <div class="mt-3 space-y-2">
+            <label class="flex cursor-pointer items-center gap-3">
+              <input type="radio" name="ease" value="very-easy" required class="h-4 w-4 border-slate-300 text-indigo-600 focus:ring-indigo-500" />
+              <span>Very easy</span>
+            </label>
+            <label class="flex cursor-pointer items-center gap-3">
+              <input type="radio" name="ease" value="easy" class="h-4 w-4 border-slate-300 text-indigo-600 focus:ring-indigo-500" />
+              <span>Easy</span>
+            </label>
+            <label class="flex cursor-pointer items-center gap-3">
+              <input type="radio" name="ease" value="difficult" class="h-4 w-4 border-slate-300 text-indigo-600 focus:ring-indigo-500" />
+              <span>Difficult</span>
+            </label>
+            <label class="flex cursor-pointer items-center gap-3">
+              <input type="radio" name="ease" value="very-difficult" class="h-4 w-4 border-slate-300 text-indigo-600 focus:ring-indigo-500" />
+              <span>Very difficult</span>
+            </label>
+          </div>
+        </fieldset>
+
+        <!-- e. Checkboxes -->
+        <fieldset>
+          <legend class="text-sm font-semibold">Which parts of the site did you use? <span class="font-normal text-slate-500">(select all that apply)</span></legend>
+          <div class="mt-3 space-y-2">
+            <label class="flex cursor-pointer items-center gap-3">
+              <input type="checkbox" name="sections" value="home" class="h-4 w-4 rounded border-slate-300 text-indigo-600 focus:ring-indigo-500" />
+              <span>Home page</span>
+            </label>
+            <label class="flex cursor-pointer items-center gap-3">
+              <input type="checkbox" name="sections" value="blog" class="h-4 w-4 rounded border-slate-300 text-indigo-600 focus:ring-indigo-500" />
+              <span>Blog or articles</span>
+            </label>
+            <label class="flex cursor-pointer items-center gap-3">
+              <input type="checkbox" name="sections" value="products" class="h-4 w-4 rounded border-slate-300 text-indigo-600 focus:ring-indigo-500" />
+              <span>Products or services</span>
+            </label>
+            <label class="flex cursor-pointer items-center gap-3">
+              <input type="checkbox" name="sections" value="contact" class="h-4 w-4 rounded border-slate-300 text-indigo-600 focus:ring-indigo-500" />
+              <span>Contact page</span>
+            </label>
+          </div>
+        </fieldset>
+
+        <!-- b. Textarea -->
+        <div>
+          <label for="comments" class="block text-sm font-semibold">What should we improve?</label>
+          <textarea
+            id="comments"
+            name="comments"
+            rows="4"
+            placeholder="Tell us what worked and what didn't."
+            class="mt-2 block w-full rounded-lg border border-slate-300 px-3 py-2 shadow-sm placeholder:text-slate-400 focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-200"></textarea>
+        </div>
+
+        <!-- f. Submit button -->
+        <button
+          type="submit"
+          class="w-full rounded-lg bg-indigo-600 px-4 py-2.5 font-semibold text-white shadow-sm transition hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-300 focus:ring-offset-2">
+          Send feedback
+        </button>
+
+        <p id="thanks" class="hidden rounded-lg bg-green-50 px-4 py-3 text-sm text-green-800" role="status">
+          Thanks! Your feedback was received.
+        </p>
+      </form>
+    </section>
+  </div>
 </body>
-<?php include 'inc/scripts.php'; ?>
+<!-- <?php include 'inc/scripts.php'; ?> -->
 
 </html>
