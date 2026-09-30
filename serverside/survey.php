@@ -5,158 +5,89 @@
 <body>
   <?php include 'inc/nav.php'; ?>
   <div id="app" class="container">
-    <section class="voteBG">
-      <div class="container mt-5 mb-5 d-flex justify-content-center">
-        <div class="card blurred-box px-1 py-4">
-          <div class="card-body">
-            <h6 class="card-title mb-3 text-center title">
-              Billings Restaurant Survey
-            </h6>
-            <form action="process.php" method="POST" id="myForm" class="form">
-              <!-- Text input for "Your name:" -->
-              <div class="row mt-4">
-                <div class="col-sm-12">
-                  <div class="form-group">
-                    <label for="name" class="form-label">Your name:</label>
-                    <input
-                      class="form-control"
-                      type="text"
-                      id="name"
-                      name="name"
-                      placeholder="Enter your name" />
+    <section class="bg-light">
+
+      <div class="container my-5">
+        <div class="row justify-content-center">
+          <div class="col-md-8">
+            <div class="card shadow">
+              <div class="card-header bg-primary text-white">
+                <h3 class="card-title mb-0">Website Suggestion Form</h3>
+              </div>
+              <div class="card-body">
+                <form action="process.php" method="POST" id="myForm" class="form">
+
+                  <!-- 1. Username (First and Last) -->
+                  <div class="row mb-4">
+                    <div class="col-md-6">
+                      <label for="firstName" class="form-label fw-bold">First Name</label>
+                      <input type="text" class="form-control" id="firstName" placeholder="John" required>
+                    </div>
+                    <div class="col-md-6">
+                      <label for="lastName" class="form-label fw-bold">Last Name</label>
+                      <input type="text" class="form-control" id="lastName" placeholder="Doe" required>
+                    </div>
                   </div>
-                </div>
-              </div>
 
-              <!-- Text input for "Age:" -->
-              <div class="row">
-                <div class="col-sm-12">
-                  <div class="form-group">
-                    <label for="age" class="form-label">Age:</label>
-                    <input
-                      class="form-control"
-                      type="text"
-                      id="age"
-                      name="age"
-                      placeholder="Enter your age" />
+                  <!-- 2. Written Suggestions -->
+                  <div class="mb-4">
+                    <label for="suggestions" class="form-label fw-bold">Your Written Suggestions</label>
+                    <textarea class="form-control" id="suggestions" rows="4" placeholder="Share your feedback or ideas here..." required></textarea>
                   </div>
-                </div>
-              </div>
 
-              <!-- gender input -->
-              <div class="row">
-                <label>Whats your Gender?</label>
-              </div>
-              <div class="row">
-                <div class="col">
-                  <label>
-                    <input type="radio" name="gender" value="m" />
-                    <span>Male</span>
-                  </label>
-                </div>
-                <div class="col">
-                  <label>
-                    <input type="radio" name="gender" value="f" />
-                    <span>Female</span>
-                  </label>
-                </div>
-                <div class="col">
-                  <label>
-                    <input type="radio" name="gender" value="o" />
-                    <span>Other</span>
-                  </label>
-                </div>
-              </div>
+                  <!-- 3. Rate My Site (Radio Buttons) -->
+                  <!-- <div class="mb-4">
+                            <label class="form-label d-block fw-bold">Rate My Site</label>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="siteRating" id="rateExcellent" value="excellent" required>
+                                <label class="form-check-label" for="rateExcellent">Excellent</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="siteRating" id="rateGood" value="good">
+                                <label class="form-check-label" for="rateGood">Good</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="siteRating" id="rateFair" value="fair">
+                                <label class="form-check-label" for="rateFair">Fair</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="siteRating" id="ratePoor" value="poor">
+                                <label class="form-check-label" for="ratePoor">Poor</label>
+                            </div>
+                        </div> -->
+                  <button type="button" id="openModal">Rate this site</button>
+                  <span id="rateStatus">No rating yet</span>
 
-              <!-- Select input for "How long have you lived in Billings:" -->
-              <div class="row">
-                <label>How long have you lived in the billings area?</label>
-              </div>
-              <div class="row">
-                <select
-                  class="form-select"
-                  aria-label="Default select example"
-                  name="time_as_resident">
-                  <option selected>Options</option>
-                  <option value="short">0 to 5 years</option>
-                  <option value="medium">5 to 10 years</option>
-                  <option value="long">more then 10 yearse</option>
-                </select>
-              </div>
-
-              <!-- Text input for "Favorite Restaurant:" -->
-              <div class="row"></div>
-              <div class="row">
-                <div class="col-sm-12">
-                  <label for="favorite" class="form-label">
-                    Favorite Restaurant:
-                  </label>
-                  <div class="form-group">
-                    <input
-                      class="form-control"
-                      type="text"
-                      id="favorite"
-                      name="favorite"
-                      placeholder="Enter your favorite restaurant" />
+                  <!-- 4. Multiple Choice Question (Checkboxes) -->
+                  <div class="mb-4">
+                    <label class="form-label d-block fw-bold">What features would you like to see improved? (Select all that apply)</label>
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" value="speed" id="checkSpeed">
+                      <label class="form-check-label" for="checkSpeed">Website Loading Speed</label>
+                    </div>
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" value="design" id="checkDesign">
+                      <label class="form-check-label" for="checkDesign">Visual Design & Layout</label>
+                    </div>
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" value="navigation" id="checkNavigation">
+                      <label class="form-check-label" for="checkNavigation">Navigation & Search</label>
+                    </div>
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" value="content" id="checkContent">
+                      <label class="form-check-label" for="checkContent">Content Quality</label>
+                    </div>
                   </div>
-                </div>
-              </div>
+                  <!-- pop up menu -->
 
-              <!-- Text input for "Second Favorite Restaurant:" -->
-              <div class="row">
-                <div class="col-sm-12">
-                  <div class="form-group">
-                    <label for="second_favorite" class="form-label">Second Favorite Restaurant:</label>
-                    <input
-                      class="form-control"
-                      type="text"
-                      id="second_favorite"
-                      name="second_favorite"
-                      placeholder="Enter your second favorite restaurant" />
+                  <!-- 5. Submit Button -->
+                  <div class="d-grid">
+                    <button type="submit" class="btn btn-primary btn-lg">Submit Suggestions</button>
                   </div>
-                </div>
-              </div>
 
-              <!-- Text input for "Third Favorite Restaurant:" -->
-              <div class="row">
-                <div class="col-sm-12">
-                  <div class="form-group">
-                    <label for="third_favorite" class="form-label">Third Favorite Restaurant:</label>
-                    <input
-                      class="form-control"
-                      type="text"
-                      id="third_favorite"
-                      name="third_favorite"
-                      placeholder="Enter your third favorite restaurant" />
-                  </div>
-                </div>
-              </div>
+                </form>
 
-              <!-- Text field for "What do you like most..." -->
-              <div class="row">
-                <div class="col-sm-12">
-                  <div class="form-group">
-                    <label for="like_most" class="form-label" id="responseMessage">What do you like most about your favorite restaurant?</label>
-                    <textarea
-                      class="form-control"
-                      id="like_most"
-                      name="like_most"
-                      rows="3"></textarea>
-                  </div>
-                </div>
               </div>
-
-              <!-- Submit Button -->
-              <div class="text center row mt-3">
-                <button type="submit">Submit</button>
-              </div>
-            </form>
-          </div>
-        </div>
-      </div>
-    </section>
-
-  </div>
 
 </body>
 <script
